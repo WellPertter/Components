@@ -1,0 +1,52 @@
+unit untDevRaizEdit;
+
+interface
+
+uses
+  Vcl.StdCtrls, System.Classes, System.UITypes;
+
+  Type
+    TDevRaizedit = class(TEdit)
+  private
+    FColorEnter: TColor;
+    procedure SetColorEnter(const Value: TColor);
+
+    //procedure DoCreate; override;
+    procedure DoEnter; override; // Vai sobrescrever
+    procedure DoExit; override; // Vai sobrescrever
+
+  published
+    property ColorEnter: TColor read FColorEnter write SetColorEnter;
+  end;
+procedure Register;
+
+implementation
+
+uses
+  Vcl.Graphics;
+
+procedure Register;
+begin
+	RegisterComponents('DevRaiz', [TDevRaizedit]);
+end;
+
+{ TDevRaizedit }
+
+procedure TDevRaizedit.DoEnter;
+begin
+  inherited;
+  self.Color := FColorEnter;
+end;
+
+procedure TDevRaizedit.DoExit;
+begin
+  inherited;
+  self.Color := clRed;
+end;
+
+procedure TDevRaizedit.SetColorEnter(const Value: TColor);
+begin
+  FColorEnter := Value;
+end;
+
+end.

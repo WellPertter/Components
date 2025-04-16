@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/04/14 09:57:26.000.427,=rtl.dcp</Transaction>
+    <Transaction>2025/04/14 09:57:55.000.688,C:\Users\desenv\Documents\Embarcadero\Studio\Projects\Package1.dproj=F:\All Projectes\Components\bin\DevRaiz.dproj</Transaction>
+    <Transaction>2025/04/15 14:01:19.000.478,=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/04/15 14:02:13.000.822,F:\All Projectes\Components\bin\unt\untDevRaizEdit.pas=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/04/15 14:08:53.000.573,=vcl.dcp</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="unt"/>
+    <File Path="unt\untDevRaizEdit.pas"/>
+    <File Path="rtl.dcp"/>
+    <File Path="vcl.dcp"/>
+  </ProjectSortOrder>
+</BorlandProject>

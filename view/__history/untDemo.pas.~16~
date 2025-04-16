@@ -1,0 +1,52 @@
+unit untDemo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, untDevRaizEdit;
+
+type
+  TForm1 = class(TForm)
+    Edit1: TEdit;
+    Edit2: TEdit;
+    DevRaizedit1: TDevRaizedit;
+
+    procedure Edit1Enter(Sender: TObject);
+    procedure Edit1Exit(Sender: TObject);
+    procedure Edit2Exit(Sender: TObject);
+    procedure Edit2Enter(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Edit1Enter(Sender: TObject);
+begin
+  edit1.Color := clRed;
+end;
+
+procedure TForm1.Edit1Exit(Sender: TObject);
+begin
+  edit1.Color := clWhite;
+end;
+
+procedure TForm1.Edit2Enter(Sender: TObject);
+begin
+   edit2.Color := clRed;
+end;
+
+procedure TForm1.Edit2Exit(Sender: TObject);
+begin
+   edit2.Color := clWhite;
+end;
+
+end.
