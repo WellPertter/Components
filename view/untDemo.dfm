@@ -10,6 +10,8 @@ object Form1: TForm1
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  OldCreateOrder = True
+  PixelsPerInch = 96
   TextHeight = 13
   object Edit1: TEdit
     Left = 296
@@ -34,12 +36,8 @@ object Form1: TForm1
     Top = 24
     Width = 121
     Height = 21
-    ColorNormal = clWhite
+    ColorNormal = clBlack
     ColorEnter = clBlack
     Obrigatorio = False
-  end
-  object DRSimple1: TDRSimple
-    Left = 360
-    Top = 40
   end
 end

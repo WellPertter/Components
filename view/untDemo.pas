@@ -8,10 +8,10 @@ uses
 
 type
   TForm1 = class(TForm)
+
     Edit1: TEdit;
     Edit2: TEdit;
     DevRaizedit1: TDevRaizedit;
-    DRSimple1: TDRSimple;
 
     procedure Edit1Enter(Sender: TObject);
     procedure Edit1Exit(Sender: TObject);
