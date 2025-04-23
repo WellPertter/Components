@@ -1,0 +1,102 @@
+unit untDevRaizEditPath;
+
+interface
+
+uses
+  Vcl.StdCtrls, System.Classes, System.UITypes, Vcl.Controls, Vcl.Dialogs, Vcl.ExtCtrls;
+
+Type
+  TDevRaizeditPath = class(TCustomEdit)
+    FButton :TButton;
+    FFileOpenDialog: TFileOpenDialog;
+
+   procedure ClickButton(Sender: TObject);
+  public
+    constructor Create(AOwner: TComponent); Override;
+
+  end;
+
+
+  TDevRaizeditPathPnl = class(TCustomPanel)
+    FEdit : TEdit;
+    FButton :TButton;
+    FFileOpenDialog: TFileOpenDialog;
+
+   procedure ClickButton(Sender: TObject);
+  public
+    constructor Create(AOwner: TComponent); Override;
+
+  end;
+
+
+procedure Register;
+
+implementation
+
+
+procedure Register;
+begin
+	RegisterComponents('DevRaiz', [TDevRaizeditPath, TDevRaizeditPathPnl]);
+end;
+
+{ TDevRaizeditPath }
+
+procedure TDevRaizeditPath.ClickButton(Sender: TObject);
+begin
+  if FFileOpenDialog.Execute then
+  begin
+    self.text := FFileOpenDialog.FileName;
+  end;
+end;
+
+constructor TDevRaizeditPath.Create(AOwner: TComponent);
+begin
+  inherited;
+  // OpenDialog
+  FFileOpenDialog := TFileOpenDialog.Create(self);
+  FFileOpenDialog.Options := [fdoPickFolders];
+
+  // Button
+  FButton := TButton.Create(self);
+  FButton.Parent  := self;
+  FButton.Align   := alRight;
+  FButton.Caption := '...';
+  FButton.Width   := 30;
+
+  FButton.OnClick := self.ClickButton;
+end;
+
+{ TDevRaizeditPathPnl }
+
+procedure TDevRaizeditPathPnl.ClickButton(Sender: TObject);
+begin
+  if FFileOpenDialog.Execute then
+  begin
+    FEdit.text := FFileOpenDialog.FileName;
+  end;
+end;
+
+constructor TDevRaizeditPathPnl.Create(AOwner: TComponent);
+begin
+  inherited;
+  // OpenDialog
+  FFileOpenDialog := TFileOpenDialog.Create(self);
+  FFileOpenDialog.Options := [fdoPickFolders];
+
+
+  // Button
+  FButton := TButton.Create(self);
+  FButton.Parent  := self;
+  FButton.Align   := alRight;
+  FButton.Caption := '...';
+  FButton.Width   := 30;
+
+  // Edit
+  FEdit := TEdit.Create(self);
+  FEdit.Parent  := self;
+  FEdit.Align   := alClient;
+
+  FButton.OnClick := self.ClickButton;
+end;
+
+end.

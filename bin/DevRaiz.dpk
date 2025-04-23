@@ -32,6 +32,7 @@ requires
   vcl;
 
 contains
-  untDevRaizEdit in 'unt\untDevRaizEdit.pas';
+  untDevRaizEdit in 'unt\untDevRaizEdit.pas',
+  untDevRaizEditPath in 'unt\untDevRaizEditPath.pas';
 
 end.
