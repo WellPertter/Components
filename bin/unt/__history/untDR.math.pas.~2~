@@ -1,0 +1,8 @@
+unit untDR.math;
+
+interface
+
+implementation
+
+function Dividir(pv1, pv2: extended): extended;
+end.

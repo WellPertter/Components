@@ -1,0 +1,293 @@
+unit untDRHeader;
+
+interface
+
+uses
+  untDRPanel, Vcl.ExtCtrls, System.Classes, Vcl.Controls, Vcl.Graphics,
+  System.DateUtils;
+//   System.Classes, System.UITypes, Vcl.StdCtrls, Vcl.Dialogs, Vcl.ExtCtrls;
+
+
+
+type
+  TDR_Size = (szFixo, szAuto);
+  TDR_subDiv = (sd05min, sd10min, sd15min, sd30min, sd60min);
+
+  TDR_op_header = class(TPersistent)
+  private
+    Fwidth: integer;
+    FSize: TDR_Size;
+    procedure SetSize(const Value: TDR_Size);
+    procedure Setwidth(const Value: integer);
+  public
+    constructor Create;
+    destructor destroy; Override;
+  published
+
+    property Size: TDR_Size read FSize write SetSize;
+    property width: integer read Fwidth write Setwidth;
+  end;
+
+  TDR_op_time = class(TPersistent)
+
+  private
+    FTimeEnd: TTime;
+    FTimeBegin: TTime;
+    FSubDiv: TDR_subDiv;
+    procedure SetTimeBegin(const Value: TTime);
+    procedure SetTimeEnd(const Value: TTime);
+    procedure SetSubDiv(const Value: TDR_subDiv);
+  public
+    function GetHours: int64;
+    function GetSubDiv: integer;
+    constructor Create;
+  published
+    property TimeBegin: TTime read FTimeBegin write SetTimeBegin;
+    property TimeEnd: TTime read FTimeEnd write SetTimeEnd;
+    property Hours: int64 read GetHours;
+    property SubDiv: TDR_subDiv read FSubDiv write SetSubDiv;
+  end;
+
+
+  TDR_options = class(TPersistent)
+  public
+    constructor Create;
+    destructor destroy; Override;
+  private
+    FHeader: TDR_op_header;
+    FTime: TDR_op_time;
+    procedure SetHeader(const Value: TDR_op_header);
+    procedure SetTime(const Value: TDR_op_time);
+  published
+
+    property Header: TDR_op_header read FHeader write SetHeader;
+    property Time:TDR_op_time read FTime write SetTime;
+  end;
+
+  TDRHeader = class(TCustomPanel)
+  private
+    FPnHora   : TDRPanelLinha;
+    FPnMinuto : TDRPanelLinha;
+    FSize_BoxHeader: TDR_Size;
+    FOpitions: TDR_options;
+
+    procedure SetOpitions(const Value: TDR_options);
+  public
+    destructor destroy; Override;
+    constructor Create(AOwner: TComponent); Override;
+
+    procedure resize(Sender: TObject);
+    procedure RedrawPanel;
+  published
+   // property Size_BoxHeader:TDR_Size read FSize_BoxHeader write SetSize_BoxHeader;
+   property Opitions: TDR_options read FOpitions write SetOpitions;
+   property Align;
+
+  end;
+
+
+procedure Register;
+
+implementation
+
+uses
+  System.SysUtils, untDR.math, Vcl.Dialogs;
+
+procedure Register;
+begin
+ 	RegisterComponents('DevRaiz', [TDRHeader]);
+end;
+
+{ TDRHeader }
+
+constructor TDRHeader.Create(AOwner: TComponent);
+begin
+  inherited;
+  FOpitions:= TDR_options.Create;
+
+
+  FPnHora        := TDRPanelLinha.Create(self);
+  FPnHora.Parent := self;
+  FPnHora.Align  := alTop;
+  FPnHora.Height := Trunc(self.Height/2);
+  FPnHora.Color  := clRed;
+
+
+  FPnMinuto       := TDRPanelLinha.Create(self);
+  FPnMinuto.Parent:= self;
+  FPnMinuto.Align := alClient;
+  FPnMinuto.Color := clBlue;
+
+  OnResize := resize;
+end;
+
+destructor TDRHeader.destroy;
+begin
+  FPnHora.Free;
+  FPnMinuto.Free;
+  FOpitions.free;
+  inherited;
+end;
+
+
+procedure TDRHeader.RedrawPanel;
+var
+  i, y, count_hora, count_minuto, width, left_hora, left_minuto: integer;
+  pnl,pnl2: TPanel;
+begin
+
+  count_hora := self.Opitions.Time.Hours;
+
+  case self.Opitions.Header.Size of
+    szFixo: width := self.Opitions.Header.width;
+    szAuto: width := trunc(Self.Width/count_hora);
+  end;
+
+  
+
+  
+  left_hora    := 0;
+
+    
+  for i := 1 to count_hora do
+  begin
+    pnl        := TPanel.Create(FPnHora);
+    pnl.Parent := FPnHora;
+    pnl.Align  := alNone;
+    pnl.Width  := width;
+    pnl.Caption:= inttostr(i);
+
+    pnl.Left   := left_hora;
+    pnl.Top    := 0;
+    pnl.Height := Self.FPnHora.Height;
+    left_hora  := left_hora + width;
+    
+ 
+  
+  end;
+
+  
+  count_minuto := Dividir(60, self.Opitions.FTime.GetSubDiv);
+  left_minuto  := 0;
+  //width        := trunc(width/count_minuto);  
+  width        := trunc(width/count_minuto);
+  for y := 1 to (count_minuto*count_hora) do
+  begin
+    pnl2         := TPanel.Create(FPnMinuto);
+    pnl2.Parent  := FPnMinuto;
+    pnl2.Align   := alNone;
+    pnl2.Width   := width;
+    pnl2.Caption := inttostr(y);
+
+    pnl2.Left    := left_minuto;
+    pnl2.Top     := 0;
+    pnl2.Height  := Self.FPnMinuto.Height;
+    left_minuto  := left_minuto + width;
+  end;
+    
+
+
+
+end;
+
+procedure TDRHeader.resize(Sender: TObject);
+begin
+  FPnHora.Height := Trunc(self.Height/2);
+end;
+
+
+procedure TDRHeader.SetOpitions(const Value: TDR_options);
+begin
+  FOpitions := Value;
+end;
+
+{ TDR_options }
+
+constructor TDR_options.Create;
+begin
+  FHeader:= TDR_op_header.Create;
+  FTime  := TDR_op_time.Create;
+end;
+
+destructor TDR_options.destroy;
+begin
+  FHeader.Free;
+  FTime.free;
+  inherited;
+end;
+
+procedure TDR_options.SetHeader(const Value: TDR_op_header);
+begin
+  FHeader := Value;
+end;
+
+procedure TDR_options.SetTime(const Value: TDR_op_time);
+begin
+  FTime := Value;
+end;
+
+{ TDR_op_header }
+
+constructor TDR_op_header.Create;
+begin
+   Fwidth := 20;
+end;
+
+destructor TDR_op_header.destroy;
+begin
+
+  inherited;
+end;
+
+procedure TDR_op_header.SetSize(const Value: TDR_Size);
+begin
+  FSize := Value;
+end;
+
+procedure TDR_op_header.Setwidth(const Value: integer);
+begin
+  Fwidth := Value;
+end;
+
+{ TDR_op_time }
+
+constructor TDR_op_time.Create;
+begin
+  FTimeBegin := now;
+  FTimeEnd   := now;
+end;
+
+function TDR_op_time.GetHours: int64;
+begin
+  Result := HoursBetween(FTimeBegin, FTimeEnd);
+end;
+
+function TDR_op_time.GetSubDiv: integer;
+begin
+
+  case self.SubDiv of
+    sd05min: Result := 5;
+    sd10min: Result := 10;
+    sd15min: Result := 15;
+    sd30min: Result := 30;
+    sd60min: Result := 60;
+  end;
+
+end;
+
+procedure TDR_op_time.SetSubDiv(const Value: TDR_subDiv);
+begin
+  FSubDiv := Value;
+end;
+
+procedure TDR_op_time.SetTimeBegin(const Value: TTime);
+begin
+  FTimeBegin := Value;
+end;
+
+procedure TDR_op_time.SetTimeEnd(const Value: TTime);
+begin
+  FTimeEnd := Value;
+end;
+
+end.

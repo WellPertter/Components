@@ -8,11 +8,20 @@
     <Transaction>2025/04/15 14:08:53.000.573,=vcl.dcp</Transaction>
     <Transaction>2025/04/23 10:02:37.000.692,=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
     <Transaction>2025/04/23 10:03:05.000.016,F:\All Projectes\Components\bin\unt\untDevRaizEditPath.pas=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/04/24 13:55:29.000.773,=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/04/24 13:56:14.000.787,F:\All Projectes\Components\bin\Unit1.pas=F:\All Projectes\Components\bin\unt\untDRHeader.pas</Transaction>
+    <Transaction>2025/04/24 13:57:13.000.600,=F:\All Projectes\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/04/24 13:57:26.000.850,F:\All Projectes\Components\bin\Unit1.pas=F:\All Projectes\Components\bin\unt\untDRPanel.pas</Transaction>
+    <Transaction>2025/05/02 15:10:43.000.920,=C:\dev\Components\bin\Unit1.pas</Transaction>
+    <Transaction>2025/05/02 15:11:28.000.864,C:\dev\Components\bin\Unit1.pas=C:\dev\Components\bin\unt\untDR.math.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="unt"/>
     <File Path="unt\untDevRaizEdit.pas"/>
     <File Path="unt\untDevRaizEditPath.pas"/>
+    <File Path="unt\untDRHeader.pas"/>
+    <File Path="unt\untDRPanel.pas"/>
+    <File Path="unt\untDR.math.pas"/>
     <File Path="rtl.dcp"/>
     <File Path="vcl.dcp"/>
   </ProjectSortOrder>

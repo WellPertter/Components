@@ -33,6 +33,9 @@ requires
 
 contains
   untDevRaizEdit in 'unt\untDevRaizEdit.pas',
-  untDevRaizEditPath in 'unt\untDevRaizEditPath.pas';
+  untDevRaizEditPath in 'unt\untDevRaizEditPath.pas',
+  untDRHeader in 'unt\untDRHeader.pas',
+  untDRPanel in 'unt\untDRPanel.pas',
+  untDR.math in 'unt\untDR.math.pas';
 
 end.

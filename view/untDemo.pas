@@ -5,34 +5,17 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, untDevRaizEdit,
-  Vcl.ExtDlgs, untDevRaizEditPath, Vcl.ExtCtrls;
+  Vcl.ExtDlgs, untDevRaizEditPath, Vcl.ExtCtrls, untDRPanel, untDRHeader;
 
 type
   TForm1 = class(TForm)
-
-    Edit1: TEdit;
-    Edit2: TEdit;
-    DevRaizedit1: TDevRaizedit;
-    edtcaminho: TEdit;
-    FileOpenDialog1: TFileOpenDialog;
-    DevRaizeditPath1: TDevRaizeditPath;
     Button1: TButton;
-    Panel1: TPanel;
-    DevRaizeditPathPnl1: TDevRaizeditPathPnl;
-    DevRaizeditPathPnl2: TDevRaizeditPathPnl;
+    DRHeader1: TDRHeader;
 
-    procedure Edit1Enter(Sender: TObject);
-    procedure Edit1Exit(Sender: TObject);
-    procedure Edit2Exit(Sender: TObject);
-    procedure Edit2Enter(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
-    FIsAdmin: boolean;
-    procedure SetIsAdmin(const Value: boolean);
     { Private declarations }
   public
-    property IsAdmin: boolean read FIsAdmin write SetIsAdmin;
     { Public declarations }
   end;
 
@@ -46,46 +29,8 @@ implementation
 procedure TForm1.Button1Click(Sender: TObject);
 begin
 
- // FileOpenDialog1.Options := [fdoPickFolders];
- { if OpenTextFileDialog1.Execute then
-  begin
-    edtcaminho.text := OpenTextFileDialog1.FileName;
-  end;   }
-
+ DRHeader1.RedrawPanel
 end;
 
-procedure TForm1.Edit1Enter(Sender: TObject);
-begin
-  edit1.Color := clRed;
-end;
-
-procedure TForm1.Edit1Exit(Sender: TObject);
-begin
-  edit1.Color := clWhite;
-end;
-
-procedure TForm1.Edit2Enter(Sender: TObject);
-begin
-   edit2.Color := clRed;
-end;
-
-procedure TForm1.Edit2Exit(Sender: TObject);
-begin
-   edit2.Color := clWhite;
-end;
-
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-  IsAdmin := False;
-
-  if IsAdmin then
-    ShowMessage('Você é admin');
-end;
-
-procedure TForm1.SetIsAdmin(const Value: boolean);
-begin
-  FIsAdmin := Value;
-end;
 
 end.

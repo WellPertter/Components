@@ -1,0 +1,18 @@
+unit untDR.math;
+
+interface
+
+function Dividir(pv1, pv2: integer): integer;
+
+implementation
+
+function Dividir(pv1, pv2: integer): integer;
+begin
+  if pv2 = 0 then
+    Result := 0
+  else
+    Result := trunc(pv1/pv2);
+end;
+
+
+end.

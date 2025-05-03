@@ -103,6 +103,7 @@
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <None Include="ModelSupport_DEMO\default.txaPackage"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -125,6 +126,7 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="4">
+                <DeployFile LocalName="ModelSupport_DEMO\default.txaPackage" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="Win32\Debug\DEMO.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
@@ -1082,6 +1084,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

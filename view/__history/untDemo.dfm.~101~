@@ -1,0 +1,36 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 510
+  ClientWidth = 1017
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  TextHeight = 13
+  object Button1: TButton
+    Left = 472
+    Top = 336
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object DRHeader1: TDRHeader
+    Left = 0
+    Top = 0
+    Width = 1017
+    Height = 122
+    Opitions.Header.Size = szAuto
+    Opitions.Header.width = 20
+    Opitions.Time.TimeBegin = 0.041666666666666660
+    Opitions.Time.TimeEnd = 0.416666666666666700
+    Opitions.Time.SubDiv = sd60min
+    Align = alTop
+    ExplicitWidth = 1015
+  end
+end

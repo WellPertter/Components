@@ -1,0 +1,46 @@
+unit untDRPanel;
+
+interface
+
+uses
+  Vcl.StdCtrls, System.Classes, System.UITypes, Vcl.Controls, Vcl.Dialogs, Vcl.ExtCtrls;
+
+type
+
+  TDRPanelCustom = class(TCustomPanel)
+    FEdit : TEdit;
+    FButton :TButton;
+    FFileOpenDialog: TFileOpenDialog;
+
+   procedure ClickButton(Sender: TObject);
+
+  published
+    property Color;
+  end;
+
+
+
+  TDRPanelLinha = class (TDRPanelCustom)
+
+  published
+    constructor Create(AOwner: TComponent); Override;
+  end;
+
+
+implementation
+
+procedure Register;
+begin
+	RegisterComponents('DevRaiz', [TDRPanelCustom, TDRPanelLinha]);
+end;
+
+{ TDRPanelLinha }
+
+constructor TDRPanelLinha.Create(AOwner: TComponent);
+begin
+  inherited;
+  ///
+end;
+
+end.
+
